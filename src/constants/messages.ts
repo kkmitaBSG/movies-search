@@ -3,11 +3,15 @@ interface Messages {
 }
 
 const messages: Messages = {
-  pageContentTitle: "Movies and series",
+  moviesTitle: "Movies",
+  searchPageTitle: "Search a movie",
   fetchResponse: "Failed to fetch",
   overviewDesc: "overview",
   originalLanguageDesc: "original language",
   searchValue: "Search title:",
+  AdditionalInfoProductionCountries: "Country:",
+  AdditionalInfoReleaseDate: "Release:",
+  AdditionalInfoGenres: "Genres:",
 };
 
 export default messages;

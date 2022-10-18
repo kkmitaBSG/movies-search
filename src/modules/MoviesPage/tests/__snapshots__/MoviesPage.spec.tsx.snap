@@ -1,0 +1,32 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MoviesPage render with movies 1`] = `
+<div
+  className="sc-dkrFOg gsGYiQ"
+>
+  <a
+    aria-current="page"
+    className="sc-gswNZR dTKyTL active"
+    href="/"
+    onClick={[Function]}
+  >
+    Movies
+  </a>
+  <input
+    className="sc-bcXHqe cEoBZN"
+    onBlur={[Function]}
+    onChange={[Function]}
+    onKeyDown={[Function]}
+    placeholder="Search a movie..."
+    type="text"
+    value=""
+  />
+  <div
+    className="sc-hLBbgP eQAeNk"
+  >
+    ItemMockedComponent
+    ItemMockedComponent
+    ItemMockedComponent
+  </div>
+</div>
+`;

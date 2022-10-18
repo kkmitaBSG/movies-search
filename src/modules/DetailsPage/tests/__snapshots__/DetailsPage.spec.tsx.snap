@@ -1,0 +1,62 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`DetailsPage render with movie details 1`] = `
+Array [
+  <img
+    className="sc-bcXHqe fFuTYD"
+    src="backdrop"
+  />,
+  <div
+    className="sc-gswNZR hAoysI"
+  >
+    <div
+      className="sc-dkrFOg eRmXJd"
+    >
+      <div
+        className="sc-eDvSVe fXFSTq"
+      >
+        title
+      </div>
+      <div
+        className="sc-jSUZER coARuu"
+      >
+        overview
+      </div>
+    </div>
+    <div
+      className="sc-hLBbgP jBHWAK"
+    >
+      <div
+        className="sc-gKPRtg dPDEXd"
+      >
+        <div
+          className="sc-iBYQkv dwYivG"
+        >
+          Country:
+        </div>
+        US
+      </div>
+      <div
+        className="sc-gKPRtg dPDEXd"
+      >
+        <div
+          className="sc-iBYQkv dwYivG"
+        >
+          Release:
+        </div>
+        2015
+      </div>
+      <div
+        className="sc-gKPRtg dPDEXd"
+      >
+        <div
+          className="sc-iBYQkv dwYivG"
+        >
+          Genres:
+        </div>
+        commedy
+      </div>
+    </div>
+  </div>,
+]
+`;
