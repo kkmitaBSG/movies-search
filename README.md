@@ -18,7 +18,7 @@ Project written in React in Typescript with Redux Toolkit. App enable to search 
 - react-test-renderer - *render components to pure js objects for unit testing*
 
 ## Getting Started
-* Clone `https://github.com/kkmitaBSG/movies-series.git`
+* Clone `https://github.com/kkmitaBSG/movies-search.git`
 
 ### Installing
 
