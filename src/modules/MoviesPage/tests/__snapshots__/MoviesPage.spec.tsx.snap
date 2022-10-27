@@ -2,27 +2,80 @@
 
 exports[`MoviesPage render with movies 1`] = `
 <div
-  className="sc-dkrFOg gsGYiQ"
+  className="sc-eDvSVe"
 >
-  <a
-    aria-current="page"
-    className="sc-gswNZR dTKyTL active"
-    href="/"
-    onClick={[Function]}
+  <header
+    className="sc-iBYQkv fuJHcB"
   >
-    Movies
-  </a>
-  <input
-    className="sc-bcXHqe cEoBZN"
-    onBlur={[Function]}
-    onChange={[Function]}
-    onKeyDown={[Function]}
-    placeholder="Search a movie..."
-    type="text"
-    value=""
-  />
+    <div
+      className="sc-pyfCe cMlCao"
+    >
+      <svg
+        className="sc-ftTHYK jtLsAp"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M18 11c0-.959-.68-1.761-1.581-1.954C16.779 8.445 17 7.75 17 7c0-2.206-1.794-4-4-4-1.517 0-2.821.857-3.5 2.104C8.821 3.857 7.517 3 6 3 3.794 3 2 4.794 2 7c0 .902.312 1.727.817 2.396A1.994 1.994 0 0 0 2 11v8c0 1.103.897 2 2 2h12c1.103 0 2-.897 2-2v-2.638l4 2v-7l-4 2V11zm-5-6c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2zM6 5c1.103 0 2 .897 2 2s-.897 2-2 2-2-.897-2-2 .897-2 2-2zM4 19v-8h12l.002 8H4z"
+        />
+      </svg>
+      <a
+        aria-current="page"
+        className="sc-hLBbgP fvrQVt active"
+        href="/"
+        onClick={[Function]}
+      >
+        Movies
+      </a>
+    </div>
+    <div
+      className="sc-bcXHqe hyxbkT"
+    >
+      <svg
+        className="sc-dkrFOg hQsQCi"
+        fill="currentColor"
+        height="1em"
+        stroke="currentColor"
+        strokeWidth="0"
+        style={
+          Object {
+            "color": undefined,
+          }
+        }
+        viewBox="0 0 24 24"
+        width="1em"
+        xmlns="http://www.w3.org/2000/svg"
+      >
+        <path
+          d="M10 18a7.952 7.952 0 0 0 4.897-1.688l4.396 4.396 1.414-1.414-4.396-4.396A7.952 7.952 0 0 0 18 10c0-4.411-3.589-8-8-8s-8 3.589-8 8 3.589 8 8 8zm0-14c3.309 0 6 2.691 6 6s-2.691 6-6 6-6-2.691-6-6 2.691-6 6-6z"
+        />
+        <path
+          d="M11.412 8.586c.379.38.588.882.588 1.414h2a3.977 3.977 0 0 0-1.174-2.828c-1.514-1.512-4.139-1.512-5.652 0l1.412 1.416c.76-.758 2.07-.756 2.826-.002z"
+        />
+      </svg>
+      <input
+        className="sc-gswNZR cnxqWE"
+        onBlur={[Function]}
+        onChange={[Function]}
+        onKeyDown={[Function]}
+        placeholder="Search a movie..."
+        type="text"
+        value=""
+      />
+    </div>
+  </header>
   <div
-    className="sc-hLBbgP eQAeNk"
+    className="sc-jSUZER fwRILb"
   >
     ItemMockedComponent
     ItemMockedComponent

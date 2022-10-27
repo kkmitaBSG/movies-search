@@ -35,13 +35,16 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange }) => {
   );
 
   return (
-    <S.Input
-      value={value}
-      placeholder={"Search a movie..."}
-      minLength={1}
-      debounceTimeout={500}
-      onChange={changeInput}
-    />
+    <S.InputWrapper>
+      <S.BiSearchAlt />
+      <S.Input
+        value={value}
+        placeholder={"Search a movie..."}
+        minLength={1}
+        debounceTimeout={500}
+        onChange={changeInput}
+      />
+    </S.InputWrapper>
   );
 };
 

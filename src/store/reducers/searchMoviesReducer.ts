@@ -7,31 +7,24 @@ const initialState: Movies = {
   page: 1,
 };
 
-export const moviesReducer = createSlice({
-  name: "movies",
+export const searchMoviesReducer = createSlice({
+  name: "searchMovies",
   initialState,
   reducers: {
-    getMoviesSuccess: (state, action: PayloadAction<Movies>) => {
+    getSearchMoviesSuccess: (state, action: PayloadAction<Movies>) => {
       state.page = action.payload.page;
       state.results = transformMovieData(action.payload.results);
     },
-    getMoviesNextPageSuccess: (state, action: PayloadAction<Movies>) => {
+    getSearchMoviesNextPageSuccess: (state, action: PayloadAction<Movies>) => {
       state.page = action.payload.page;
       state.results = state.results!.concat(
         transformMovieData(action.payload.results)!
       );
     },
-
-    getMovieDetailsSuccess: (state, action: PayloadAction<Movies>) => {
-      state.results = transformMovieData(action.payload.results);
-    },
   },
 });
 
-export const {
-  getMoviesSuccess,
-  getMoviesNextPageSuccess,
-  getMovieDetailsSuccess,
-} = moviesReducer.actions;
+export const { getSearchMoviesSuccess, getSearchMoviesNextPageSuccess } =
+  searchMoviesReducer.actions;
 
-export default moviesReducer.reducer;
+export default searchMoviesReducer.reducer;

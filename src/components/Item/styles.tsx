@@ -6,7 +6,7 @@ export const Item = styled(NavLink)<{ poster?: string }>`
   margin: 10px;
   box-shadow: 0 0 10px #737373;
   border-radius: 10px;
-  width: 250px;
+  max-width: 280px;
   height: 450px;
   cursor: pointer;
   overflow: hidden;

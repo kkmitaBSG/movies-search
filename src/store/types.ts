@@ -14,6 +14,7 @@ export interface Movie {
   overview: string;
   poster_path?: string;
   poster?: string;
+  backdrop_path?: string;
 }
 
 export interface Movies {

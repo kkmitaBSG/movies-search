@@ -1,57 +1,74 @@
-import { useCallback, useEffect } from "react";
-import throttle from "lodash.throttle";
+import { useCallback, useEffect, useState } from "react";
 import messages from "../../constants/messages";
 import Item from "../../components/Item/Item";
 import { useDispatch, useSelector } from "react-redux";
 import { MoviesActionType } from "../../store/types";
-import { getMovies } from "../../store/selectors";
+import { getMovies, getSearchMovies } from "../../store/selectors";
 import { useSearchParams } from "react-router-dom";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { handleScroll as fetchNextPage } from "./helpers";
 import * as S from "./styles";
 
 const MoviesPage = () => {
   const dispatch = useDispatch();
+  const [isScrollTop, setIsScrollTop] = useState<boolean>(true);
   const [searchParams] = useSearchParams();
-  const { results } = useSelector(getMovies);
+
+  const searchPhrase = searchParams.get("search");
+
+  const { results } = useSelector(searchPhrase ? getSearchMovies : getMovies);
 
   useEffect(() => {
-    const searchPhrase = searchParams.get("search");
     dispatch({
       type: MoviesActionType.getMovies,
       searchPhrase,
     });
-  }, [dispatch, searchParams]);
-
-  const handleScroll = throttle(() => {
-    const searchPhrase = searchParams.get("search");
-    if (
-      window.innerHeight + window.scrollY >=
-      document.body.offsetHeight - 20
-    ) {
-      dispatch({ type: MoviesActionType.getMoviesNextPage, searchPhrase });
-    }
-  }, 300);
+  }, [dispatch, searchParams, searchPhrase]);
 
   useEffect(() => {
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", () => {
+      setIsScrollTop(window.scrollY < 20);
+      fetchNextPage(searchParams, dispatch);
+    });
 
     return () => {
-      window.removeEventListener("scroll", handleScroll);
+      window.removeEventListener("scroll", () => {
+        setIsScrollTop(window.scrollY < 20);
+        fetchNextPage(searchParams, dispatch);
+      });
     };
-  }, [dispatch, handleScroll]);
+  }, [dispatch, searchParams]);
 
-  const onInputChange = useCallback((searchPhrase: string) => {
-    dispatch({ type: MoviesActionType.getMovies, searchPhrase });
-  }, [dispatch]);
+  const onInputChange = useCallback(
+    (searchPhrase: string) => {
+      dispatch({ type: MoviesActionType.getMovies, searchPhrase });
+    },
+    [dispatch]
+  );
+
+  const onJumpTopClick = useCallback(() => {
+    window.scrollTo(0, 0);
+  }, []);
 
   const items = results?.map((item) => <Item key={item.id} {...item} />);
 
   return (
     <S.Container>
-      <S.Title to="/">{messages.moviesTitle}</S.Title>
-      <SearchBar onInputChange={onInputChange} />
+      <S.Header isScrollTop={isScrollTop}>
+        <S.TitleWrapper>
+          <S.BiCameraMovie />
+          <S.Title to="/">{messages.moviesTitle}</S.Title>
+        </S.TitleWrapper>
+        <SearchBar onInputChange={onInputChange} />
+      </S.Header>
 
       <S.Wrapper>{items}</S.Wrapper>
+
+      {!isScrollTop && (
+        <S.JumpTop onClick={onJumpTopClick}>
+          <S.BiArrowToTop />
+        </S.JumpTop>
+      )}
     </S.Container>
   );
 };
