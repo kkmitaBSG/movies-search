@@ -40,4 +40,5 @@ npm start
  - add *unit tests* for store/ sagas, reducers, helpers, selectors
  - use *lazy images* to optimizing loading images 
  - build app *on server side* for better SEO performence
+ - no results notification
 

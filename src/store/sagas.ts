@@ -10,26 +10,29 @@ import {
   getMovieDetails,
   getMoviesPage,
   getMoviesResults,
+  getSearchFromLocationSearch,
   getSearchMoviesPage,
 } from "./selectors";
 import { getMovieDetailsSuccess } from "./reducers/movieDetailsReducer";
-import * as api from "./requests";
 import {
   getSearchMoviesNextPageSuccess,
   getSearchMoviesSuccess,
 } from "./reducers/searchMoviesReducer";
+import * as api from "./requests";
 
-export function* moviesWorker(action: AnyAction): SagaIterator<void> {
+export function* moviesWorker(): SagaIterator<void> {
   try {
-    const results = yield select(getMoviesResults);
+    const moviesResults = yield select(getMoviesResults);
 
-    if (results.length && !action.searchPhrase) {
+    if (moviesResults.length) {
       return;
     }
 
+    const searchPhrase = yield select(getSearchFromLocationSearch);
+
     let response;
-    if (action.searchPhrase) {
-      response = yield call(api.getSearchMovies, action.searchPhrase, 1);
+    if (searchPhrase) {
+      response = yield call(api.getSearchMovies, searchPhrase, 1);
       yield put(getSearchMoviesSuccess(response.data));
     } else {
       response = yield call(api.getMovies, 1);
@@ -40,12 +43,23 @@ export function* moviesWorker(action: AnyAction): SagaIterator<void> {
   }
 }
 
-export function* moviesNextPageWorker(action: AnyAction): SagaIterator<void> {
+export function* searchMoviesWorker(): SagaIterator<void> {
   try {
+    const searchPhrase = yield select(getSearchFromLocationSearch);
+    const response = yield call(api.getSearchMovies, searchPhrase, 1);
+    yield put(getSearchMoviesSuccess(response.data));
+  } catch (err) {
+    yield put({ type: MoviesActionType.getMoviesFail, message: err.message });
+  }
+}
+
+export function* moviesNextPageWorker(): SagaIterator<void> {
+  try {
+    const searchPhrase = yield select(getSearchFromLocationSearch);
     let response;
-    if (action.searchPhrase) {
+    if (searchPhrase) {
       const page: number = yield select(getSearchMoviesPage);
-      response = yield call(api.getSearchMovies, action.searchPhrase, page + 1);
+      response = yield call(api.getSearchMovies, searchPhrase, page + 1);
       yield put(getSearchMoviesNextPageSuccess(response.data));
     } else {
       const page: number = yield select(getMoviesPage);
@@ -73,6 +87,7 @@ export function* movieDetailsWorker(action: AnyAction): SagaIterator<void> {
 
 export default function* rootSaga() {
   yield takeLatest(MoviesActionType.getMovies, moviesWorker);
+  yield takeLatest(MoviesActionType.getSearchMovies, searchMoviesWorker);
   yield takeLatest(MoviesActionType.getMoviesNextPage, moviesNextPageWorker);
   yield takeLatest(MoviesActionType.getMovieDetails, movieDetailsWorker);
 }

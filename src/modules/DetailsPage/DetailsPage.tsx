@@ -44,7 +44,7 @@ const DetailsPage = () => {
         <S.RightSide>
           <S.AdditionalInfo>
             <S.Name>{messages.AdditionalInfoProductionCountries}</S.Name>
-            {production_countries![0].name}
+            {production_countries?.[0]?.name}
           </S.AdditionalInfo>
           <S.AdditionalInfo>
             <S.Name>{messages.AdditionalInfoReleaseDate}</S.Name>

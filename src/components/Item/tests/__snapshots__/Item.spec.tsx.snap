@@ -2,7 +2,7 @@
 
 exports[`Item with full filled props 1`] = `
 <a
-  className="sc-bcXHqe cpguYa"
+  className="sc-bcXHqe hgBEOx"
   href="/details/1"
   onClick={[Function]}
   poster="xyz.eu"

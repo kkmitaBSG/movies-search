@@ -2,7 +2,7 @@ import styled from "styled-components";
 
 export const Poster = styled.img`
   width: 100%;
-  max-height: 50vh;
+  height: 50vh;
   object-fit: cover;
   box-shadow: 0 0 200px black;
 `;
@@ -12,6 +12,7 @@ export const InfoWrapper = styled.div`
   margin: 60px;
   gap: 140px;
 `;
+
 export const LeftSide = styled.div`
   flex: 2;
 `;

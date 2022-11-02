@@ -1,20 +1,23 @@
 import { createSelector } from "reselect";
 import { RootState } from ".";
+import { locationSearchParameterName } from "./types";
 
 export const getMovies = (state: RootState) => state.movies;
 
 export const getSearchMovies = (state: RootState) => state.searchMovies;
 
+const getLocationSearch = (state: RootState) => state.router.location.search;
+
 export const getMoviesPage = createSelector(getMovies, (movies) => movies.page);
+
+export const getSearchFromLocationSearch = createSelector(
+  getLocationSearch,
+  (locationSearch) => new URLSearchParams(locationSearch).get(locationSearchParameterName)
+);
 
 export const getSearchMoviesPage = createSelector(
   getSearchMovies,
   (movies) => movies.page
-);
-
-export const getMoviesResults = createSelector(
-  getMovies,
-  (movies) => movies.results
 );
 
 export const getSearchMoviesResults = createSelector(
@@ -24,3 +27,11 @@ export const getSearchMoviesResults = createSelector(
 
 export const getMovieDetails = (movieId: string) => (state: RootState) =>
   state.movieDetails[movieId];
+
+export const getMoviesResults = createSelector(
+  getSearchFromLocationSearch,
+  getMovies,
+  getSearchMovies,
+  (searchPhrase, movies, searchMovies) =>
+    searchPhrase ? searchMovies.results : movies.results
+);

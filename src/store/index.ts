@@ -4,6 +4,14 @@ import movieDetailsReducer from "./reducers/movieDetailsReducer";
 import createSagaMiddleware from "redux-saga";
 import rootSaga from "./sagas";
 import searchMoviesReducer from "./reducers/searchMoviesReducer";
+import {
+  createRouterMiddleware,
+  createRouterReducerMapObject,
+} from "@lagunovsky/redux-react-router";
+import { createBrowserHistory } from "history";
+
+export const history = createBrowserHistory();
+const routerMiddleware = createRouterMiddleware(history);
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -12,8 +20,9 @@ export const store = configureStore({
     movies: popularMoviesReducer,
     searchMovies: searchMoviesReducer,
     movieDetails: movieDetailsReducer,
+    ...createRouterReducerMapObject(history),
   },
-  middleware: [sagaMiddleware],
+  middleware: [sagaMiddleware, routerMiddleware],
 });
 
 sagaMiddleware.run(rootSaga);

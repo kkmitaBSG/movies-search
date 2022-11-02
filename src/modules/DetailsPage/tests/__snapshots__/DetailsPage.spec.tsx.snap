@@ -3,7 +3,7 @@
 exports[`DetailsPage render with movie details 1`] = `
 Array [
   <img
-    className="sc-bcXHqe fFuTYD"
+    className="sc-bcXHqe hfeTdG"
     src="backdrop"
   />,
   <div

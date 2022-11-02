@@ -1,7 +1,7 @@
 import React, { useCallback, useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useSearchParams } from "react-router-dom";
-import { MoviesActionType } from "../../store/types";
+import { locationSearchParameterName, MoviesActionType } from "../../store/types";
 import * as S from "./styles";
 
 export interface SearchBarProps {
@@ -14,14 +14,14 @@ const SearchBar: React.FC<SearchBarProps> = ({ onInputChange }) => {
   const [value, setValue] = useState<string>();
 
   useEffect(() => {
-    setValue(searchParams.get("search") || "");
+    setValue(searchParams.get(locationSearchParameterName) || "");
   }, [searchParams]);
 
   const changeInput = useCallback(
     (ev: React.FormEvent<HTMLInputElement>) => {
       const target = ev.target as HTMLInputElement;
       if (target.value === "") {
-        searchParams.delete("search");
+        searchParams.delete(locationSearchParameterName);
         setSearchParams(searchParams);
         dispatch({ type: MoviesActionType.getMovies });
 
